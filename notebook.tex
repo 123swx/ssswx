@@ -1,0 +1,1171 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{CH01???????Numpy}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{numpy包括以下内容:基础数据结构(数组),通用函数,索引及切片,随机数,文件输入输出}\label{numpyux5305ux62ecux4ee5ux4e0bux5185ux5bb9ux57faux7840ux6570ux636eux7ed3ux6784ux6570ux7ec4ux901aux7528ux51fdux6570ux7d22ux5f15ux53caux5207ux7247ux968fux673aux6570ux6587ux4ef6ux8f93ux5165ux8f93ux51fa}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+sd}{【课程1.2】  Numpy基础数据结构}
+        
+        \PY{l+s+sd}{NumPy数组是一个多维数组对象，称为ndarray。其由两部分组成：}
+        \PY{l+s+sd}{① 实际的数据}
+        \PY{l+s+sd}{② 描述这些数据的元数据}
+        
+        \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\end{Verbatim}
+
+
+    \section{数组的属性有:ndim(秩),shape(形状),size(总数),dtype(类型),itemsize(元素字节大小)}\label{ux6570ux7ec4ux7684ux5c5eux6027ux6709ndimux79e9shapeux5f62ux72b6sizeux603bux6570dtypeux7c7bux578bitemsizeux5143ux7d20ux5b57ux8282ux5927ux5c0f}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} 多维数组ndarray}
+        
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        
+        \PY{n}{ar} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{]}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{)}          \PY{c+c1}{\PYZsh{} 输出数组，注意数组的格式：中括号，元素之间没有逗号（和列表区分）}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{o}{.}\PY{n}{ndim}\PY{p}{)}     \PY{c+c1}{\PYZsh{} 输出数组维度的个数（轴数），或者说“秩”，维度的数量也称rank}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{o}{.}\PY{n}{shape}\PY{p}{)}    \PY{c+c1}{\PYZsh{} 数组的维度，对于n行m列的数组，shape为（n，m）}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{o}{.}\PY{n}{size}\PY{p}{)}     \PY{c+c1}{\PYZsh{} 数组的元素总数，对于n行m列的数组，元素总数为n*m}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{o}{.}\PY{n}{dtype}\PY{p}{)}    \PY{c+c1}{\PYZsh{} 数组中元素的类型，类似type()（注意了，type()是函数，.dtype是方法）}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{o}{.}\PY{n}{itemsize}\PY{p}{)} \PY{c+c1}{\PYZsh{} 数组中每个元素的字节大小，int32l类型字节为4，float64的字节为8}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{o}{.}\PY{n}{data}\PY{p}{)}     \PY{c+c1}{\PYZsh{} 包含实际数组元素的缓冲区，由于一般通过数组的索引获取元素，所以通常不需要使用这个属性。}
+        \PY{n}{ar}   \PY{c+c1}{\PYZsh{} 交互方式下输出，会有array(数组)}
+        
+        \PY{c+c1}{\PYZsh{} 数组的基本属性}
+        \PY{c+c1}{\PYZsh{} ① 数组的维数称为秩（rank），一维数组的秩为1，二维数组的秩为2，以此类推}
+        \PY{c+c1}{\PYZsh{} ② 在NumPy中，每一个线性的数组称为是一个轴（axes），秩其实是描述轴的数量：}
+        \PY{c+c1}{\PYZsh{} 比如说，二维数组相当于是两个一维数组，其中第一个一维数组中每个元素又是一个一维数组}
+        \PY{c+c1}{\PYZsh{} 所以一维数组就是NumPy中的轴（axes），第一个轴相当于是底层数组，第二个轴是底层数组里的数组。}
+        \PY{c+c1}{\PYZsh{} 而轴的数量——秩，就是数组的维数。 }
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1 2 3 4 5 6 7]
+1
+(7,)
+7
+int32
+4
+<memory at 0x000001F7CBA6EC48>
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}1}]:} array([1, 2, 3, 4, 5, 6, 7])
+\end{Verbatim}
+            
+    \section{创建数组的方法:array(),arange(),linspace(),eyes(),zeros/ones()}\label{ux521bux5efaux6570ux7ec4ux7684ux65b9ux6cd5arrayarangelinspaceeyeszerosones}
+
+    \subsection{创建数组：array()函数，括号内可以是列表、元祖、数组、生成器等}\label{ux521bux5efaux6570ux7ec4arrayux51fdux6570ux62ecux53f7ux5185ux53efux4ee5ux662fux5217ux8868ux5143ux7956ux6570ux7ec4ux751fux6210ux5668ux7b49}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} 创建数组：array()函数，括号内可以是列表、元祖、数组、生成器等}
+        
+        \PY{n}{ar1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}   \PY{c+c1}{\PYZsh{} 整型}
+        \PY{n}{ar2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mf}{3.14}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}   \PY{c+c1}{\PYZsh{} 浮点型}
+        \PY{n}{ar3} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{c}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}\PY{p}{)}   \PY{c+c1}{\PYZsh{} 二维数组：嵌套序列（列表，元祖均可）}
+        \PY{n}{ar4} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{c}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}\PY{p}{)}   \PY{c+c1}{\PYZsh{} 注意嵌套序列数量不一会怎么样}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar1}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{ar1}\PY{p}{)}\PY{p}{,}\PY{n}{ar1}\PY{o}{.}\PY{n}{dtype}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar2}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{ar2}\PY{p}{)}\PY{p}{,}\PY{n}{ar2}\PY{o}{.}\PY{n}{dtype}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar3}\PY{p}{,}\PY{n}{ar3}\PY{o}{.}\PY{n}{shape}\PY{p}{,}\PY{n}{ar3}\PY{o}{.}\PY{n}{ndim}\PY{p}{,}\PY{n}{ar3}\PY{o}{.}\PY{n}{size}\PY{p}{)}     \PY{c+c1}{\PYZsh{} 二维数组，共6个元素}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar4}\PY{p}{,}\PY{n}{ar4}\PY{o}{.}\PY{n}{shape}\PY{p}{,}\PY{n}{ar4}\PY{o}{.}\PY{n}{ndim}\PY{p}{,}\PY{n}{ar4}\PY{o}{.}\PY{n}{size}\PY{p}{)}     \PY{c+c1}{\PYZsh{} 一维数组，共2个元素}
+        \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0 1 2 3 4 5 6 7 8 9] <class 'numpy.ndarray'> int32
+[1.   2.   3.14 4.   5.  ] <class 'numpy.ndarray'> float64
+[['1' '2' '3']
+ ['a' 'b' 'c']] (2, 3) 2 6
+[list([1, 2, 3]) ('a', 'b', 'c', 'd')] (2,) 1 2
+[0 1 2 3 4]
+
+    \end{Verbatim}
+
+    \subsection{创建数组：arange()，类似range()，在给定间隔内返回均匀间隔的值。}\label{ux521bux5efaux6570ux7ec4arangeux7c7bux4f3crangeux5728ux7ed9ux5b9aux95f4ux9694ux5185ux8fd4ux56deux5747ux5300ux95f4ux9694ux7684ux503c}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} 创建数组：arange()，类似range()，在给定间隔内返回均匀间隔的值。}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}    \PY{c+c1}{\PYZsh{} 返回0\PYZhy{}9，整型}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mf}{10.0}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 返回0.0\PYZhy{}9.0，浮点型}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 返回5\PYZhy{}11}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mf}{5.0}\PY{p}{,}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 返回5.0\PYZhy{}12.0，步长为2}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10000}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 如果数组太大而无法打印，NumPy会自动跳过数组的中心部分，并只打印边角：}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0 1 2 3 4 5 6 7 8 9]
+[ 0.  1.  2.  3.  4.  5.  6.  7.  8.  9.]
+[ 5  6  7  8  9 10 11]
+[  5.   7.   9.  11.]
+[   0    1    2 {\ldots}, 9997 9998 9999]
+
+    \end{Verbatim}
+
+    \subsection{创建数组：linspace():返回在间隔{[}开始，停止{]}上计算的num个均匀间隔的样本。}\label{ux521bux5efaux6570ux7ec4linspaceux8fd4ux56deux5728ux95f4ux9694ux5f00ux59cbux505cux6b62ux4e0aux8ba1ux7b97ux7684numux4e2aux5747ux5300ux95f4ux9694ux7684ux6837ux672c}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} 创建数组：linspace():返回在间隔[开始，停止]上计算的num个均匀间隔的样本。}
+        
+        \PY{n}{ar1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mf}{2.0}\PY{p}{,} \PY{l+m+mf}{3.0}\PY{p}{,} \PY{n}{num}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+        \PY{n}{ar2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mf}{2.0}\PY{p}{,} \PY{l+m+mf}{3.0}\PY{p}{,} \PY{n}{num}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{endpoint}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+        \PY{n}{ar3} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mf}{2.0}\PY{p}{,} \PY{l+m+mf}{3.0}\PY{p}{,} \PY{n}{num}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{retstep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{c+c1}{\PYZsh{}在上面的基础上会返回步长}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar1}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{ar1}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar2}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar3}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{ar3}\PY{p}{)}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} numpy.linspace(start, stop, num=50, endpoint=True, retstep=False, dtype=None)}
+        \PY{c+c1}{\PYZsh{} start：起始值，stop：结束值}
+        \PY{c+c1}{\PYZsh{} num：生成样本数，默认为50}
+        \PY{c+c1}{\PYZsh{} endpoint：如果为真，则停止是最后一个样本。否则，不包括在内。默认值为True。}
+        \PY{c+c1}{\PYZsh{} retstep：如果为真，返回（样本，步骤），其中步长是样本之间的间距 → 输出为一个包含2个元素的元祖，第一个元素为array，第二个为步长实际值}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[2.   2.25 2.5  2.75 3.  ] <class 'numpy.ndarray'>
+[2.  2.2 2.4 2.6 2.8]
+(array([2.  , 2.25, 2.5 , 2.75, 3.  ]), 0.25) <class 'tuple'>
+
+    \end{Verbatim}
+
+    \subsection{zeros((2,3))}\label{zeros23}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} 创建数组：zeros()/zeros\PYZus{}like()/ones()/ones\PYZus{}like()}
+        
+        \PY{n}{ar1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+        \PY{n}{ar2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{dtype} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{int}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar1}\PY{p}{,}\PY{n}{ar1}\PY{o}{.}\PY{n}{dtype}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar2}\PY{p}{,}\PY{n}{ar2}\PY{o}{.}\PY{n}{dtype}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} numpy.zeros(shape, dtype=float, order=\PYZsq{}C\PYZsq{}):返回给定形状和类型的新数组，用零填充。}
+        \PY{c+c1}{\PYZsh{} shape：数组纬度，二维以上需要用()，且输入参数为整数}
+        \PY{c+c1}{\PYZsh{} dtype：数据类型，默认numpy.float64}
+        \PY{c+c1}{\PYZsh{} order：是否在存储器中以C或Fortran连续（按行或列方式）存储多维数据。}
+        
+        \PY{n}{ar3} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+        \PY{n}{ar4} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros\PYZus{}like}\PY{p}{(}\PY{n}{ar3}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar3}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar4}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} 返回具有与给定数组相同的形状和类型的零数组，这里ar4根据ar3的形状和dtype创建一个全0的数组}
+        
+        \PY{n}{ar5} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{l+m+mi}{9}\PY{p}{)}
+        \PY{n}{ar6} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+        \PY{n}{ar7} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{ones\PYZus{}like}\PY{p}{(}\PY{n}{ar3}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar5}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar6}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar7}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} ones()/ones\PYZus{}like()和zeros()/zeros\PYZus{}like()一样，只是填充为1}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 0.  0.  0.  0.  0.] float64
+[[0 0]
+ [0 0]] int32
+------
+[[0 1 2 3 4]
+ [5 6 7 8 9]]
+[[0 0 0 0 0]
+ [0 0 0 0 0]]
+------
+[ 1.  1.  1.  1.  1.  1.  1.  1.  1.]
+[[[ 1.  1.  1.  1.]
+  [ 1.  1.  1.  1.]
+  [ 1.  1.  1.  1.]]
+
+ [[ 1.  1.  1.  1.]
+  [ 1.  1.  1.  1.]
+  [ 1.  1.  1.  1.]]]
+[[1 1 1 1 1]
+ [1 1 1 1 1]]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{} 创建数组：eye()}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} 创建一个正方的N*N的单位矩阵，对角线值为1，其余为0}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[ 1.  0.  0.  0.  0.]
+ [ 0.  1.  0.  0.  0.]
+ [ 0.  0.  1.  0.  0.]
+ [ 0.  0.  0.  1.  0.]
+ [ 0.  0.  0.  0.  1.]]
+
+    \end{Verbatim}
+
+    ndarray的数据类型
+
+bool 用一个字节存储的布尔类型（True或False）
+
+inti 由所在平台决定其大小的整数（一般为int32或int64）
+
+int8 一个字节大小，-128 至 127
+
+int16 整数，-32768 至 32767
+
+int32 整数，-2 ** 31 至 2 ** 32 -1
+
+int64 整数，-2 ** 63 至 2 ** 63 - 1
+
+uint8 无符号整数，0 至 255
+
+uint16 无符号整数，0 至 65535
+
+uint32 无符号整数，0 至 2 ** 32 - 1
+
+uint64 无符号整数，0 至 2 ** 64 - 1
+
+float16 半精度浮点数：16位，正负号1位，指数5位，精度10位
+
+float32 单精度浮点数：32位，正负号1位，指数8位，精度23位
+
+float64或float 双精度浮点数：64位，正负号1位，指数11位，精度52位
+
+complex64 复数，分别用两个32位浮点数表示实部和虚部
+
+complex128或complex 复数，分别用两个64位浮点数表示实部和虚部
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+sd}{【课程1.3】  Numpy通用函数}
+        
+        \PY{l+s+sd}{基本操作}
+        
+        \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\end{Verbatim}
+
+
+    \subsection{reshape()有两种使用方法: 1: 数组.reshape 2.
+np.reshape(数组,形状)}\label{reshapeux6709ux4e24ux79cdux4f7fux7528ux65b9ux6cd5-1-ux6570ux7ec4.reshape-2.-np.reshapeux6570ux7ec4ux5f62ux72b6}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} 数组形状：.T/.reshape()/.resize()}
+        
+        \PY{n}{ar1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+        \PY{n}{ar2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar1}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{ar1}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar2}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{ar2}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} .T方法：转置，例如原shape为(3,4)/(2,3,4)，转置结果为(4,3)/(4,3,2) → 所以一维数组转置后结果不变}
+        
+        \PY{n}{ar3} \PY{o}{=} \PY{n}{ar1}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}     \PY{c+c1}{\PYZsh{} 用法1：直接将已有数组改变形状             }
+        \PY{n}{ar4} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}   \PY{c+c1}{\PYZsh{} 用法2：生成数组后直接改变形状}
+        \PY{n}{ar5} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{)}\PY{p}{,}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}   \PY{c+c1}{\PYZsh{} 用法3：参数内添加数组，目标形状}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar1}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{ar3}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar4}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar5}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} numpy.reshape(a, newshape, order=\PYZsq{}C\PYZsq{})：为数组提供新形状，而不更改其数据，所以元素数量需要一致！！}
+        
+        \PY{n}{ar6} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{resize}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar6}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} numpy.resize(a, new\PYZus{}shape)：返回具有指定形状的新数组，如有必要可重复填充所需数量的元素。}
+        \PY{c+c1}{\PYZsh{} 注意了：.T/.reshape()/.resize()都是生成新的数组！！！}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0 1 2 3 4 5 6 7 8 9] 
+ [0 1 2 3 4 5 6 7 8 9]
+[[1. 1.]
+ [1. 1.]
+ [1. 1.]
+ [1. 1.]
+ [1. 1.]] 
+ [[1. 1. 1. 1. 1.]
+ [1. 1. 1. 1. 1.]]
+------
+[0 1 2 3 4 5 6 7 8 9] 
+ [[0 1 2 3 4]
+ [5 6 7 8 9]]
+[[0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]]
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+------
+[[0 1 2 3]
+ [4 0 1 2]
+ [3 4 0 1]]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{} 数组的复制}
+         
+         \PY{n}{ar1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{ar2} \PY{o}{=} \PY{n}{ar1}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar2} \PY{p}{)}
+         \PY{n}{ar1}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{9}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar1}\PY{p}{,}\PY{n}{ar2}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} 回忆python的赋值逻辑：指向内存中生成的一个值 → 这里ar1和ar2指向同一个值，所以ar1改变，ar2一起改变}
+         
+         \PY{n}{ar3} \PY{o}{=} \PY{n}{ar1}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar3} \PY{o+ow}{is} \PY{n}{ar1}\PY{p}{)}
+         \PY{n}{ar1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{9}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar1}\PY{p}{,}\PY{n}{ar3}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} copy方法生成数组及其数据的完整拷贝}
+         \PY{c+c1}{\PYZsh{} 再次提醒：.T/.reshape()/.resize()都是生成新的数组！！！}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0 1 2 3 4 5 6 7 8 9]
+[0 1 9 3 4 5 6 7 8 9] [0 1 9 3 4 5 6 7 8 9]
+False
+[9 1 9 3 4 5 6 7 8 9] [0 1 9 3 4 5 6 7 8 9]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} 数组类型转换：.astype()}
+        
+        \PY{n}{ar1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{n}{dtype}\PY{o}{=}\PY{n+nb}{float}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar1}\PY{p}{,}\PY{n}{ar1}\PY{o}{.}\PY{n}{dtype}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} 可以在参数位置设置数组类型  \PYZsh{}\PYZsh{} }
+        
+        \PY{n}{ar2} \PY{o}{=} \PY{n}{ar1}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{int32}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar2}\PY{p}{,}\PY{n}{ar2}\PY{o}{.}\PY{n}{dtype}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar1}\PY{p}{,}\PY{n}{ar1}\PY{o}{.}\PY{n}{dtype}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} a.astype()：转换数组类型}
+        \PY{c+c1}{\PYZsh{} 注意：养成好习惯，数组类型用np.int32，而不是直接int32}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 0.  1.  2.  3.  4.  5.  6.  7.  8.  9.] float64
+-----
+[0 1 2 3 4 5 6 7 8 9] int32
+[ 0.  1.  2.  3.  4.  5.  6.  7.  8.  9.] float64
+
+    \end{Verbatim}
+
+    \subsection{数组堆叠,hstack((a,b)),水平;vstack((a,b)),竖直;stack((a,b),axis
+=
+0/1),0是行,1是列,默认是行}\label{ux6570ux7ec4ux5806ux53e0hstackabux6c34ux5e73vstackabux7ad6ux76f4stackabaxis-010ux662fux884c1ux662fux5217ux9ed8ux8ba4ux662fux884c}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{} 数组堆叠}
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}    \PY{c+c1}{\PYZsh{} a为一维数组，5个元素}
+         \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)} \PY{c+c1}{\PYZsh{} b为一维数组,4个元素}
+         \PY{n}{ar1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{hstack}\PY{p}{(}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{)}\PY{p}{)}\PY{c+c1}{\PYZsh{} 注意:((a,b))，这里形状可以不一样}
+          
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{a}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{b}\PY{p}{,}\PY{n}{b}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar1}\PY{p}{,}\PY{n}{ar1}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{]}\PY{p}{)}   \PY{c+c1}{\PYZsh{} a为二维数组，3行1列}
+         \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{c}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{]}\PY{p}{)}  \PY{c+c1}{\PYZsh{} b为二维数组，3行1列}
+         \PY{n}{ar2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{hstack}\PY{p}{(}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 注意:((a,b))，这里行相同,列可以不一样}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{a}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{b}\PY{p}{,}\PY{n}{b}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar2}\PY{p}{,}\PY{n}{ar2}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} numpy.hstack(tup)：水平（按列顺序）堆叠数组}
+         
+         \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}    
+         \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{ar1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{a}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{b}\PY{p}{,}\PY{n}{b}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar1}\PY{p}{,}\PY{n}{ar1}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{]}\PY{p}{)}   
+         \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{c}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{)}   
+         \PY{n}{ar2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 这里列相同,行可以不一样}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{a}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{b}\PY{p}{,}\PY{n}{b}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar2}\PY{p}{,}\PY{n}{ar2}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} numpy.vstack(tup)：垂直（按列顺序）堆叠数组}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{***********8}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}    
+         \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}    
+         \PY{n}{ar1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ar2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{)}\PY{p}{,}\PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{ar3} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{)}\PY{p}{,}\PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)} 
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar1}\PY{p}{,}\PY{n}{ar1}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar2}\PY{p}{,}\PY{n}{ar2}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar3}\PY{p}{,}\PY{n}{ar3}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} numpy.stack(arrays, axis=0)：沿着新轴连接数组的序列，形状必须一样！}
+         \PY{c+c1}{\PYZsh{} 重点解释axis参数的意思，假设两个数组[1 2 3]和[4 5 6]，shape均为(3,0)}
+         \PY{c+c1}{\PYZsh{} axis=0：[[1 2 3] [4 5 6]]，shape为(2,3)}
+         \PY{c+c1}{\PYZsh{} axis=1：[[1 4] [2 5] [3 6]]，shape为(3,2)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0 1 2 3 4] (5,)
+[5 6 7 8] (4,)
+[0 1 2 3 4 5 6 7 8] (9,)
+[[1]
+ [2]
+ [3]] (3, 1)
+[['a' '1']
+ ['b' '2']
+ ['c' '3']] (3, 2)
+[['1' 'a' '1']
+ ['2' 'b' '2']
+ ['3' 'c' '3']] (3, 3)
+-----
+[0 1 2 3 4] (5,)
+[5 6 7 8 9] (5,)
+[[0 1 2 3 4]
+ [5 6 7 8 9]] (2, 5)
+[[1]
+ [2]
+ [3]] (3, 1)
+[['a']
+ ['b']
+ ['c']
+ ['d']] (4, 1)
+[['1']
+ ['2']
+ ['3']
+ ['a']
+ ['b']
+ ['c']
+ ['d']] (7, 1)
+-----
+***********8
+[[0 1 2 3 4]
+ [5 6 7 8 9]] (2, 5)
+[[0 5]
+ [1 6]
+ [2 7]
+ [3 8]
+ [4 9]] (5, 2)
+[[0 1 2 3 4]
+ [5 6 7 8 9]] (2, 5)
+
+    \end{Verbatim}
+
+    \subsection{数组拆分
+hsplit(ary,拆分数):按列拆分,vsplit():按行拆分}\label{ux6570ux7ec4ux62c6ux5206-hsplitaryux62c6ux5206ux6570ux6309ux5217ux62c6ux5206vsplitux6309ux884cux62c6ux5206}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} 数组拆分 }
+         
+         \PY{n}{ar} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n}{ar1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{hsplit}\PY{p}{(}\PY{n}{ar}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar1}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{ar1}\PY{p}{)}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} numpy.hsplit(ary, indices\PYZus{}or\PYZus{}sections)：将数组水平（逐列）拆分为多个子数组 → 按列拆分}
+         \PY{c+c1}{\PYZsh{} 输出结果为列表，列表中元素为数组}
+         
+         \PY{n}{ar2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{vsplit}\PY{p}{(}\PY{n}{ar}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar2}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{ar2}\PY{p}{)}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} numpy.vsplit(ary, indices\PYZus{}or\PYZus{}sections)：:将数组垂直（行方向）拆分为多个子数组 → 按行拆}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]
+ [12 13 14 15]]
+[array([[ 0],
+       [ 4],
+       [ 8],
+       [12]]), array([[ 1],
+       [ 5],
+       [ 9],
+       [13]]), array([[ 2],
+       [ 6],
+       [10],
+       [14]]), array([[ 3],
+       [ 7],
+       [11],
+       [15]])] <class 'list'>
+[array([[0, 1, 2, 3]]), array([[4, 5, 6, 7]]), array([[ 8,  9, 10, 11]]), array([[12, 13, 14, 15]])] <class 'list'>
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} 数组简单运算}
+        
+        \PY{n}{ar} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar} \PY{o}{+} \PY{l+m+mi}{10}\PY{p}{)}   \PY{c+c1}{\PYZsh{} 加法}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar} \PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}   \PY{c+c1}{\PYZsh{} 乘法}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{/} \PY{p}{(}\PY{n}{ar}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 除法}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar} \PY{o}{*}\PY{o}{*} \PY{l+m+mf}{0.5}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 幂}
+        \PY{c+c1}{\PYZsh{} 与标量的运算}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 求平均值}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 求最大值}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 求最小值}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 求标准差}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{o}{.}\PY{n}{var}\PY{p}{(}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 求方差}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{******}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{ar}\PY{p}{,}\PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{c+c1}{\PYZsh{} 求和，np.sum() → axis为0，按列求和；axis为1，按行求和}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*********}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 排序}
+        \PY{c+c1}{\PYZsh{} 常用函数}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[10 11 12]
+ [13 14 15]]
+[[ 0  2  4]
+ [ 6  8 10]]
+[[1.         0.5        0.33333333]
+ [0.25       0.2        0.16666667]]
+[[0.         1.         1.41421356]
+ [1.73205081 2.         2.23606798]]
+2.5
+5
+0
+1.707825127659933
+2.9166666666666665
+******
+15 [3 5 7]
+*********
+[1 2 3 4 5 6]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+sd}{【课程1.4】  Numpy索引及切片}
+        
+        \PY{l+s+sd}{核心：基本索引及切片 / 布尔型索引及切片}
+        
+        \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\end{Verbatim}
+
+
+    \subsection{基本索引及切片,下标从0开始,左闭右开,表示某个值有两种方法{[}2{]}{[}2{]}或者是{[}2,2{]}}\label{ux57faux672cux7d22ux5f15ux53caux5207ux7247ux4e0bux6807ux4ece0ux5f00ux59cbux5de6ux95edux53f3ux5f00ux8868ux793aux67d0ux4e2aux503cux6709ux4e24ux79cdux65b9ux6cd522ux6216ux8005ux662f22}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c+c1}{\PYZsh{} 基本索引及切片,下标从0开始,左闭右开}
+         
+         \PY{n}{ar} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{:}\PY{l+m+mi}{6}\PY{p}{]}\PY{p}{)} 
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} 一维数组索引及切片}
+         
+         \PY{n}{ar} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{数组轴数为}\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}}\PY{k}{ar}.ndim)   \PYZsh{} 4*4的数组
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{数组轴数为}\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}}\PY{k}{ar}[2].ndim)\PYZsh{}第三行
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{数组轴数为}\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}}\PY{k}{ar}[1:3].ndim)  \PYZsh{} 得到的是行,2,3行
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} 得到的是值}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 切片数组中的第三行第三列 和二次索引得到的是一样的 }
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 切片数组中的1,2行、2,3,4列 → 二维数组}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} 二维数组索引及切片}
+         
+         \PY{n}{ar} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{数组轴数为}\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}}\PY{k}{ar}.ndim)   \PYZsh{} 2*2*2的数组
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{数组轴数为}\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}}\PY{k}{ar}[0].ndim)  \PYZsh{} 三维数组的下一个维度的第一个元素 → 一个二维数组
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{数组轴数为}\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}}\PY{k}{ar}[0][0].ndim)  \PYZsh{} 三维数组的下一个维度的第一个元素下的第一个元素 → 一个一维数组
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{数组轴数为}\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}}\PY{k}{ar}[0][0][1].ndim)  
+         \PY{c+c1}{\PYZsh{} **三维数组索引及切片}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+4
+[3 4 5]
+-----
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]
+ [12 13 14 15]] 数组轴数为2
+[ 8  9 10 11] 数组轴数为1
+[[ 4  5  6  7]
+ [ 8  9 10 11]] 数组轴数为2
+9
+10
+[[1 2 3]
+ [5 6 7]]
+-----
+[[[ 0  1]
+  [ 2  3]]
+
+ [[ 4  5]
+  [ 6  7]]
+
+ [[ 8  9]
+  [10 11]]] 数组轴数为3
+[[0 1]
+ [2 3]] 数组轴数为2
+[0 1] 数组轴数为1
+1 数组轴数为0
+
+    \end{Verbatim}
+
+    \subsection{布尔型索引及切片
+ar{[}i,:{]},i是一维数组,里面是布尔型,表示按照i中的True来按行选出ar中的元素,{[}:j{]}表示按列选,ar
+\textgreater{}
+5是一个判断矩阵,然后ar{[}ar\textgreater{}5{]},就将\textgreater{}5的元素筛选出来}\label{ux5e03ux5c14ux578bux7d22ux5f15ux53caux5207ux7247-ariiux662fux4e00ux7ef4ux6570ux7ec4ux91ccux9762ux662fux5e03ux5c14ux578bux8868ux793aux6309ux7167iux4e2dux7684trueux6765ux6309ux884cux9009ux51faarux4e2dux7684ux5143ux7d20jux8868ux793aux6309ux5217ux9009ar-5ux662fux4e00ux4e2aux5224ux65adux77e9ux9635ux7136ux540earar5ux5c31ux5c065ux7684ux5143ux7d20ux7b5bux9009ux51faux6765}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c+c1}{\PYZsh{} 布尔型索引及切片}
+         
+         \PY{n}{ar} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n}{i} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{k+kc}{True}\PY{p}{,}\PY{k+kc}{False}\PY{p}{,}\PY{k+kc}{True}\PY{p}{]}\PY{p}{)}
+         \PY{n}{j} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{k+kc}{True}\PY{p}{,}\PY{k+kc}{True}\PY{p}{,}\PY{k+kc}{False}\PY{p}{,}\PY{k+kc}{False}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{i}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{j}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 在第一维度做判断，只保留True，这里第一维度就是行，ar[i,:] = ar[i]（简单书写格式）}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 在第二维度做判断，这里如果ar[:,i]会有警告，因为i是3个元素，而ar在列上有4个}
+         \PY{c+c1}{\PYZsh{} 布尔型索引：以布尔型的矩阵去做筛选}
+         
+         \PY{n}{m} \PY{o}{=} \PY{n}{ar} \PY{o}{\PYZgt{}} \PY{l+m+mi}{5}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{m}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 这里m是一个判断矩阵}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{[}\PY{n}{m}\PY{p}{]}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 用m判断矩阵去筛选ar数组中\PYZgt{}5的元素 → 重点！后面的pandas判断方式原理就来自此处}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{[}\PY{n}{ar}\PY{o}{\PYZlt{}}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+[ True False  True]
+[ True  True False False]
+[[ 0  1  2  3]
+ [ 8  9 10 11]]
+[[0 1]
+ [4 5]
+ [8 9]]
+[[False False False False]
+ [False False  True  True]
+ [ True  True  True  True]]
+[ 6  7  8  9 10 11]
+[0 1 2 3 4]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} 数组索引及切片的值更改、复制}
+         
+         \PY{n}{ar} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{)}
+         \PY{n}{ar}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{100}
+         \PY{n}{ar}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{9}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{200}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} 一个标量赋值给一个索引/切片时，会自动改变/传播原始数组}
+         
+         \PY{n}{ar} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{b} \PY{o}{=} \PY{n}{ar}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+         \PY{n}{b}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{9}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{200}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{b}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} 复制}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0 1 2 3 4 5 6 7 8 9]
+[  0   1   2   3   4 100   6 200 200   9]
+[0 1 2 3 4 5 6 7 8 9]
+[  0   1   2   3   4   5   6 200 200   9]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+sd}{【课程1.5】  Numpy随机数}
+        
+        \PY{l+s+sd}{numpy.random包含多种概率分布的随机样本，是数据分析辅助的重点工具之一}
+        
+        \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\end{Verbatim}
+
+
+    \subsection{np.random.normal(size=(4,4))标准正态分布,np.random.rand(2,3)形状为2*3的{[}0,1)均匀分布,randn是正态分布,用法和rand一样,np.random.randint(low=2,
+high=6,
+size=(2,3)){[}2,6)随机整数,若size前面只有一个数,默认为{[}0,low)}\label{np.random.normalsize44ux6807ux51c6ux6b63ux6001ux5206ux5e03np.random.rand23ux5f62ux72b6ux4e3a23ux768401ux5747ux5300ux5206ux5e03randnux662fux6b63ux6001ux5206ux5e03ux7528ux6cd5ux548crandux4e00ux6837np.random.randintlow2-high6-size2326ux968fux673aux6574ux6570ux82e5sizeux524dux9762ux53eaux6709ux4e00ux4e2aux6570ux9ed8ux8ba4ux4e3a0low}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} 随机数生成}
+         
+         \PY{n}{samples} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{normal}\PY{p}{(}\PY{n}{size}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{samples}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} 生成一个标准正太分布的4*4样本值}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[-0.69288014 -1.00959076  1.18927855 -1.56324882]
+ [ 1.64470666 -0.64703278 -0.15116479  1.52918402]
+ [ 0.01818166 -0.62061904 -1.23270516  0.2536594 ]
+ [ 1.6996321  -0.76657859 -0.86522954  0.00569906]]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{\PYZsh{} numpy.random.rand(d0, d1, ..., dn)：生成一个[0,1)之间的随机浮点数或N维浮点数组 —— 均匀分布}
+         
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}  \PY{c+c1}{\PYZsh{} 导入matplotlib模块，用于图表辅助分析}
+         \PY{o}{\PYZpc{}} \PY{n}{matplotlib} \PY{n}{inline} 
+         \PY{c+c1}{\PYZsh{} 魔法函数，每次运行自动生成图表}
+         
+         \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 生成一个随机浮点数}
+         
+         \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{b}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 生成形状为4的一维数组}
+         
+         \PY{n}{c} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{c}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{c}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 生成形状为2*3的二维数组，注意这里不是((2,3))}
+         
+         \PY{n}{samples1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}
+         \PY{n}{samples2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{samples1}\PY{p}{,}\PY{n}{samples2}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} 生成1000个均匀分布的样本值}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.4924389363768712 <class 'float'>
+[0.48011987 0.87783422 0.81286799 0.15082159] <class 'numpy.ndarray'>
+[[0.59014279 0.59217875 0.51948771]
+ [0.71326158 0.82165661 0.68398334]] <class 'numpy.ndarray'>
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:} <matplotlib.collections.PathCollection at 0x1f7cf853cf8>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_34_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c+c1}{\PYZsh{}  numpy.random.randn(d0, d1, ..., dn)：生成一个浮点数或N维浮点数组 —— 正态分布}
+         
+         \PY{n}{samples1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}
+         \PY{n}{samples2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{samples1}\PY{p}{,}\PY{n}{samples2}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} randn和rand的参数用法一样}
+         \PY{c+c1}{\PYZsh{} 生成1000个正太的样本值}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} <matplotlib.collections.PathCollection at 0x842ea90>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_35_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c+c1}{\PYZsh{} numpy.random.randint(low, high=None, size=None, dtype=\PYZsq{}l\PYZsq{})：生成一个整数或N维整数数组}
+         \PY{c+c1}{\PYZsh{} 若high不为None时，取[low,high)之间随机整数，否则取值[0,low)之间随机整数，且high必须大于low }
+         \PY{c+c1}{\PYZsh{} dtype参数：只能是int类型  }
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{c+c1}{\PYZsh{}左闭右开}
+         \PY{c+c1}{\PYZsh{} low=2：默认从[0,2]生成1个[0,2)之间随机整数  }
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{size}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} low=2,size=5 ：生成5个[0,2)之间随机整数}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{n}{size}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} low=2,high=6,size=5：生成5个[2,6)之间随机整数  }
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{size}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} low=2,size=(2,3)：生成一个2x3整数数组,取数范围：[0,2)随机整数 }
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} low=2,high=6,size=(2,3)：生成一个2*3整数数组,取值范围：[2,6)随机整数  }
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+1
+------------------
+[0 0 1 0 1]
+------------------
+[4 4 5 3 5]
+------------------
+[[0 0 1]
+ [0 0 0]]
+------------------
+[[3 5 2]
+ [3 5 5]]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+sd}{【课程1.6】  Numpy数据的输入输出}
+        
+        \PY{l+s+sd}{numpy读取/写入数组数据、文本数据}
+        
+        \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{c+c1}{\PYZsh{} 存储数组数据 .npy文件}
+         
+         \PY{k+kn}{import} \PY{n+nn}{os}
+         \PY{n}{os}\PY{o}{.}\PY{n}{chdir}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C:/Users/SWX/Desktop/}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{ar} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar}\PY{p}{)}
+         \PY{n}{np}\PY{o}{.}\PY{n}{save}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{arraydata.npy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ar}\PY{p}{)}\PY{c+c1}{\PYZsh{}文件名,文件,以npy为后缀}
+         \PY{c+c1}{\PYZsh{} 也可以直接 np.save(\PYZsq{}C:/Users/Hjx/Desktop/arraydata.npy\PYZsq{}, ar)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[0.68921517 0.68016318 0.41346861 0.08638632 0.16152836]
+ [0.61896323 0.78422812 0.01944266 0.36102563 0.14513187]
+ [0.36975205 0.31640769 0.67144102 0.12800442 0.37554251]
+ [0.03448487 0.54541272 0.21952368 0.12412449 0.66842382]
+ [0.44441889 0.89279609 0.87406207 0.2961825  0.14780495]]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{c+c1}{\PYZsh{} 读取数组数据 .npy文件}
+         
+         \PY{n}{ar\PYZus{}load} \PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{arraydata.npy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar\PYZus{}load}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} 也可以直接 np.load(\PYZsq{}C:/Users/Hjx/Desktop/arraydata.npy\PYZsq{})}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[ 0.57358458  0.71126411  0.22317828  0.69640773  0.97406015]
+ [ 0.83007851  0.63460575  0.37424462  0.49711017  0.42822812]
+ [ 0.51354459  0.96671598  0.21427951  0.91429226  0.00393325]
+ [ 0.680534    0.31516091  0.79848663  0.35308657  0.21576843]
+ [ 0.38634472  0.47153005  0.6457086   0.94983697  0.97670458]]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{c+c1}{\PYZsh{} 存储/读取文本文件}
+         
+         \PY{n}{ar} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
+         \PY{n}{np}\PY{o}{.}\PY{n}{savetxt}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{array.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{ar}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} np.savetxt(fname, X, fmt=\PYZsq{}\PYZpc{}.18e\PYZsq{}, delimiter=\PYZsq{} \PYZsq{}, newline=\PYZsq{}\PYZbs{}n\PYZsq{}, header=\PYZsq{}\PYZsq{}, footer=\PYZsq{}\PYZsq{}, comments=\PYZsq{}\PYZsh{} \PYZsq{})：存储为文本txt文件}
+         
+         \PY{n}{ar\PYZus{}loadtxt} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{loadtxt}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{array.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ar\PYZus{}loadtxt}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} 也可以直接 np.loadtxt(\PYZsq{}C:/Users/Hjx/Desktop/array.txt\PYZsq{})}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[0.43546259 0.21853487 0.06174677 0.42044534 0.10493657]
+ [0.20659736 0.07709822 0.77847618 0.8587491  0.86581631]
+ [0.27785881 0.38567714 0.4424365  0.18659246 0.54638609]
+ [0.15479251 0.77491838 0.79647386 0.0208824  0.62440627]
+ [0.82736988 0.58868537 0.74470697 0.48511713 0.62523763]]
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
